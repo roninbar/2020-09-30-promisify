@@ -23,11 +23,12 @@ function foo(a, b, callback) {
 
 const fooAsync = Promise.promisify(foo);
 
+function log(promise) {
+    return promise.then(console.info).catch(console.error);
+}
+
 window.addEventListener('load', async function () {
-
-    fooAsync(1, 4).then(console.info).catch(console.error);
-
-    fooAsync(10, 4).then(console.info).catch(console.error);
-
+    await log(fooAsync(1, 4));
+    await log(fooAsync(10, 4));
 });
 
