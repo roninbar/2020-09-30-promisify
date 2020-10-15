@@ -27,6 +27,8 @@ function log(promise) {
 }
 
 window.addEventListener('load', async function () {
+    foo(1, 4, console.log);
+    foo(10, 4, console.log);
     await log(fooAsync(1, 4));
     await log(fooAsync(10, 4));
 });
