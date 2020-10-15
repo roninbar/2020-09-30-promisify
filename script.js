@@ -14,7 +14,7 @@ Promise.promisify = function (f) {
 };
 
 function foo(a, b, callback) {
-    return a + b < 10 ? callback('error', null) : callback(null, '(:');
+    return callback(a + b < 10 ? ['error', null] : [null, '(:']);
 }
 
 const fooAsync = Promise.promisify(foo);
