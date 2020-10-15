@@ -1,6 +1,5 @@
 Promise.promisify = function (f) {
-    return function () {
-        const args = [...arguments];
+    return function (...args) {
         const op = result => `(${args.join(', ')}) => ${result}`;
         return new Promise(function (resolve, reject) {
             f(...args, function (err, data) {
