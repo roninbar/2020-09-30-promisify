@@ -13,7 +13,7 @@ Promise.promisify = function (f) {
     };
 };
 
-const foo = (a, b, callback) => callback(a + b < 10 ? ['error', null] : [null, '(:']);
+const foo = (a, b, callback) => callback(...(a + b < 10 ? ['error', null] : [null, '(:']));
 
 const fooAsync = Promise.promisify(foo);
 
