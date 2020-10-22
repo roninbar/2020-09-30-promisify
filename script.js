@@ -1,6 +1,6 @@
 window.addEventListener('load', async function () {
 
-    const foo = (a, b, callback) => callback(...(a + b < 10 ? ['error', null] : [null, '(:']));
+    const foo = (a, b, callback) => callback(...(a + b < 10 ? ['error'] : [null, '(:']));
 
     const fooAsync = Promise.promisify(foo);
 
@@ -22,21 +22,26 @@ window.addEventListener('load', async function () {
 
     const a = 5, b = 8;
 
-    console.log(obj.foo(a, b)); // 13
+    console.log('--- Testing bind2 ---');
+    console.log(`obj.foo(${a}, ${b}) =>`, obj.foo(a, b)); // 13
     try {
+        console.log(`fooUnbound(${a}, ${b}) =>`);
         console.log(fooUnbound(a, b));
     } catch (err) {
         console.error(err); // TypeError: this.op is not a function
     }
-    console.log(fooBound(a, b)); // 13
-    console.log(fooBound2(a, b)); // 13
-    console.log(fooBoundWithArgs(a, b)); // 20
-    console.log(fooBound2WithArgs(a, b)); // 20
-
+    console.log(`fooBound(${a}, ${b}) =>`, fooBound(a, b)); // 13
+    console.log(`fooBound2(${a}, ${b}) =>`, fooBound2(a, b)); // 13
+    console.log(`fooBoundWithArgs(${a}, ${b}) =>`, fooBoundWithArgs(a, b)); // 20
+    console.log(`fooBound2WithArgs(${a}, ${b}) =>`, fooBound2WithArgs(a, b)); // 20
+    console.log('');
+    
+    console.log('--- Testing promisify ---');
     foo(1, 4, console.log); // error null
     foo(10, 4, console.log); // null (:
     await log(fooAsync(1, 4)); // error
     await log(fooAsync(10, 4)); // (:
+    console.log('');
 
 });
 
