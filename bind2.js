@@ -1,6 +1,6 @@
-Function.prototype.bind2 = function (thisArg, ...argArray) {
+Function.prototype.bind2 = function (thisArg, ...boundArgs) {
     const f = this;
-    return function(...args) {
-        return f.apply(thisArg, [...argArray, ...args]);
+    return function(...callArgs) {
+        return f.call(thisArg, ...boundArgs, ...callArgs);
     };
 };
