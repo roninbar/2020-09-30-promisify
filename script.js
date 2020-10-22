@@ -37,7 +37,7 @@ window.addEventListener('load', async function () {
     console.log('');
     
     console.log('--- Testing promisify ---');
-    foo(1, 4, console.log); // error null
+    foo(1, 4, console.log); // error
     foo(10, 4, console.log); // null (:
     await log(fooAsync(1, 4)); // error
     await log(fooAsync(10, 4)); // (:
