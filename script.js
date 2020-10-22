@@ -1,12 +1,12 @@
-const foo = (a, b, callback) => callback(...(a + b < 10 ? ['error', null] : [null, '(:']));
-
-const fooAsync = Promise.promisify(foo);
-
-function log(promise) {
-    return promise.then(console.info).catch(console.error);
-}
-
 window.addEventListener('load', async function () {
+
+    const foo = (a, b, callback) => callback(...(a + b < 10 ? ['error', null] : [null, '(:']));
+
+    const fooAsync = Promise.promisify(foo);
+
+    function log(promise) {
+        return promise.then(console.info).catch(console.error);
+    }
 
     const obj = {
         op: (a, b) => a + b,
@@ -37,5 +37,6 @@ window.addEventListener('load', async function () {
     foo(10, 4, console.log); // null (:
     await log(fooAsync(1, 4)); // error
     await log(fooAsync(10, 4)); // (:
+
 });
 
